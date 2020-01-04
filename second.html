@@ -1,0 +1,221 @@
+<html><head></head> 
+ <body onload="insRow()"> 
+ <p dir="rtl" align="right">
+نخصیص ارقام تصادفی برای تعیین نوع روز </p>
+   <table dir="rtl" id="randomtable" border="3px" align="right" bgcolor="#66FFFF" > 
+    <tbody> 
+     <tr> 
+      <td>نوع روز</td> 
+    
+      <td>تخصیص ارقام تصادفی</td> 
+     
+     </tr> 
+     <tr>
+       <td>خوب</td>
+       <td> 01-35 </td>
+     </tr>
+       <tr>
+       <td>متوسط</td>
+       <td> 36-80 </td>
+     </tr>
+       <tr>
+       <td>بد</td>
+       <td> 81-00 </td>
+     </tr>
+    </tbody> 
+   </table> 
+    <p align="center">  نخصیص ارقام تصادفی برای روزنامه های مورد تقاضا</p>
+  <table dir="rtl" id="" border="3px" align="center" bgcolor="#66FFFF"> 
+    <tbody> 
+     <tr> 
+      <td rowspan="2"> تقاضا </td> 
+      <td colspan="3">  تخصیص اعداد تصادفی</td> 
+     
+     </tr> 
+     <tr> 
+<td>خوب</td>
+<td>متوسط</td>
+<td>بد</td>
+     </tr> 
+     <tr><td>40</td><td>01-03</td><td>01-10</td><td>01-44</td>
+     </tr>
+      <tr><td>50</td><td>04-08</td><td>11-28</td><td>45-66</td>
+     </tr>
+      <tr><td>60</td><td>09-23</td><td>29-68</td><td>67-82</td>
+     </tr>
+      <tr><td>70</td><td>24-43</td><td>69-88</td><td>83-94</td>
+     </tr>
+      <tr><td>80</td><td>44-78</td><td>89-96</td><td>95-00</td>
+     </tr>
+      <tr><td>90</td><td>79-93</td><td>96-100</td><td>-</td>
+     </tr>
+      <tr><td>100</td><td>94-00</td><td>-</td><td>-</td>
+     </tr>
+    </tbody> 
+   </table> 
+  <br><br><br>
+<p align="right">
+  شبیه سازی برای خرید 70 روزنامه
+  </p>
+   <table dir="rtl" id="tbl" border="3px" align="right" bgcolor="#66FFFF"> 
+    <tbody> 
+     <tr> 
+      <td>روز</td> 
+      <td> ارقام تصادفی برای تعیین نوع روز</td> 
+      <td>نوع روز</td> 
+      <td>ارقام تصادفی برای تقاضا</td> 
+      <td>تقاضا</td> 
+      <td>درامد حاصل از فروش</td> 
+      <td> سود از دست رفته بخاطر فزونی تقاضا</td> 
+      <td>درامد حاصل از فروش به قیمت باطله</td> 
+      <td>سود روزانه</td> 
+     </tr>
+     
+      
+    </tbody> 
+   </table> 
+</body></html>
+ <script>
+            var rnd;
+            var sum1=0;
+            var zarb=0;
+            var sum2=0;
+            var sum3=0;
+            var sum4=0;
+            function randomNumber(max,min){
+            return Math.floor(Math.random() * (max - min + 1) ) + min;
+            }
+            function between(rnd,min,max){
+            return (rnd>=min) && (rnd<=max);
+            }
+            function insRow()
+            {
+            for(var i=1;i<=20;i++){
+                x=document.getElementById("tbl").insertRow(-1);
+                var y=x.insertCell(0);
+                var z=x.insertCell(1);
+                var c=x.insertCell(2);
+                var b=x.insertCell(3);
+                var q=x.insertCell(4);
+                var w=x.insertCell(5);
+                var e=x.insertCell(6);
+                var r=x.insertCell(7);
+                var t=x.insertCell(8);
+                rnd=randomNumber(1,100);
+                var rnd2=randomNumber(1,100);
+                y.innerHTML=i;
+                z.innerHTML=rnd;
+                var num="";
+                switch(true){
+                case between(rnd,1,35):
+                num="good";
+                break;
+                case between(rnd,36,80):
+                num="medium";
+                break;
+                case between(rnd,81,100):
+                num="bad";
+                break;
+            }
+            c.innerHTML=num;
+            b.innerHTML=rnd2;
+            var k=0;
+            if(num=="bad")
+            {
+                switch(true){
+                case between(rnd2,1,44):
+                k=40;
+                break;
+                case between(rnd2,45,66):
+                k=50;
+                break;
+                case between(rnd2,67,82):
+                k=60;
+                break;
+                case between(rnd2,83,94):
+                k=70;
+                break;
+                case between(rnd2,95,100):
+                k=80;
+                break;
+            }
+            q.innerHTML=k;
+            }
+            else if(num=="medium"){
+                switch(true){
+                    case between(rnd2,1,10):
+                    k=40;
+                    break;
+                    case between(rnd2,11,28):
+                    k=50;
+                    break;
+                    case between(rnd2,29,68):
+                    k=60;
+                    break;
+                    case between(rnd2,69,88):
+                    k=70;
+                    break;
+                    case between(rnd2,89,96):
+                    k=80;
+                    break;
+                    case between(rnd2,97,100):
+                    k=90;
+                    break;
+                }
+                q.innerHTML=k;
+            }
+            else if(num=="good"){
+                switch(true){
+                    case between(rnd2,1,3):
+                    k=40;
+                    break;
+                    case between(rnd2,4,8):
+                    k=50;
+                    break;
+                    case between(rnd2,9,23):
+                    k=60;
+                    break;
+                    case between(rnd2,24,43):
+                    k=70;
+                    break;
+                    case between(rnd2,44,78):
+                    k=80;
+                    break;
+                    case between(rnd2,79,93):
+                    k=90;
+                    break;
+                    case between(rnd2,94,100):
+                    k=100;
+                    break;
+            }
+            q.innerHTML=k;
+            }
+            zarb=(k*20);
+            w.innerHTML=zarb;
+            sum1+=zarb;
+            if(k<=70){
+                e.innerHTML=0;
+                var p=0;
+                p=(70-k)*2;
+                r.innerHTML=p;
+                sum3+=p;
+            }
+            else if(k>=80){
+                zarb=1400;
+                w.innerHTML=zarb;
+                var o=0;
+                o=(k-70)*7
+                e.innerHTML=o;
+                sum2+=o;
+                r.innerHTML=0;  
+            }
+            var u=0;
+		
+            u=(((w.innerHTML-910)-e.innerHTML)-r.innerHTML) ;
+            t.innerHTML=u;
+            sum4+=u;
+			u=0;
+		
+			}
+            }
+            </script>

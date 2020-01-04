@@ -1,0 +1,216 @@
+<html><head></head> 
+ <body> 
+
+   <table dir="rtl" id="randomtable" border="3px" align="right" bgcolor="#66FFFF"> 
+    <tbody> 
+     <tr> 
+      <td>مشتری</td> 
+      <td>ارقام تصادفی</td> 
+      <td>مدت بین دو ورود</td> 
+      <td>ارقام تصادفی</td> 
+      <td>مدت خدمت دهی</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+      
+  
+  
+   <table dir="rtl" id="simulationtable" border="3px" align="left" bgcolor="#66FFFF"> 
+    <tbody> 
+     <tr> 
+      <td>مشتری</td> 
+      <td> مدت سپری شده از آخرین ورود</td> 
+      <td>زمان ورود</td> 
+      <td>مدت خدمت دهی</td> 
+      <td>زمان شروع خدمت</td> 
+      <td>مدت ماندن مشتری در صف</td> 
+      <td> زمان پایان خدمت</td> 
+      <td>مدت ماندن مشتری درسیستم</td> 
+      <td>مدت بیکاری خدمت دهنده</td> 
+     </tr> 
+    </tbody> 
+   </table> 
+</body></html>
+
+<script>
+
+function getRnd(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
+  function between(rnd,min,max){
+    return (rnd>=min) && (rnd<=max);
+  }
+  function getTr(text){
+    return "<tr>"+text+"</tr>";
+  }
+  
+  function getTd(text){
+    return "<td>"+text+"</td>";
+  }
+  function big(one,two){
+    if(one>two){
+      return one;
+    }else{
+      return two;
+    }
+  }
+  var randomtable = document.getElementById("randomtable");  
+  var result = document.getElementById("simulationtable");  
+  var dovorod=0;
+  var moshtari=0;
+  var khedmat=0;
+  var vorod_perv=0;
+  var khedmat_perv=0;
+  
+  
+  
+  while(moshtari<20){
+   
+   
+   moshtari++;
+  var rnd1=getRnd(1,1000);
+  var rnd2=getRnd(1,100);
+  
+  var html="";
+  var htm="";
+  html+=getTd(moshtari);
+  htm+=html;
+  if(moshtari>1){
+    
+  switch(true){
+   
+      case between(rnd1,1,125):
+      dovorod=1;
+      break;
+      
+      case between(rnd1,126,250):
+      dovorod=2;
+      break;
+      
+      case between(rnd1,251,375):
+      dovorod=3;
+      break;
+      
+      case between(rnd1,376,500):
+      dovorod=4;
+      break;
+      
+      case between(rnd1,501,625):
+      dovorod=5;
+      break;
+      
+      case between(rnd1,626,750):
+      dovorod=6;
+      break;
+      
+      case between(rnd1,751,875):
+      dovorod=7;
+      break;
+      
+      case between(rnd1,876,1000):
+      dovorod=8;
+      break;
+      
+  }
+  
+  html+=getTd(rnd1);
+  html+=getTd(dovorod);
+  
+  }else{
+    html+=getTd("_");
+    html+=getTd("_");
+  }
+  
+  
+  
+  
+  switch(true){
+   
+      case between(rnd2,1,10):
+      khedmat=1;
+      break;
+      
+      case between(rnd2,11,30):
+      khedmat=2;
+      break;
+      
+      case between(rnd2,31,60):
+      khedmat=3;
+      break;
+      
+      case between(rnd2,61,85):
+      khedmat=4;
+      break;
+      
+      case between(rnd2,86,95):
+      khedmat=5;
+      break;
+      
+  case between(rnd2,96,100):
+      khedmat=6;
+      break;
+  }
+  
+  html+=getTd(rnd2);
+  html+=getTd(khedmat);
+  
+  randomtable.innerHTML+=getTr(html);
+  
+  
+  if(moshtari==1){
+    
+    htm+=getTd("_");
+    htm+=getTd(0);
+    htm+=getTd(khedmat);
+    htm+=getTd(0);
+    htm+=getTd(0);
+    htm+=getTd(khedmat);
+    htm+=getTd(khedmat);
+    htm+=getTd(0);
+    vorod_perv=0;
+    khedmat_perv=khedmat;
+    
+  }else{
+  var vorod= dovorod+vorod_perv;
+  var start=big(vorod,khedmat_perv);
+  var entezar_saf=start-vorod;
+  var end=start+khedmat;
+  var entezar_sys=end-vorod;
+  var bikari=start-khedmat_perv;
+  
+    htm+=getTd(dovorod);
+    htm+=getTd(vorod);
+    htm+=getTd(khedmat);
+    htm+=getTd(start);
+    htm+=getTd(entezar_saf);
+    htm+=getTd(end);
+    htm+=getTd(entezar_sys);
+    htm+=getTd(bikari);
+    
+    vorod_perv=vorod;
+    khedmat_perv=end;
+    
+    
+    
+    
+  }
+  
+  
+  
+  result.innerHTML+=getTr(htm);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  }
+
+
+</script>
